@@ -17,6 +17,8 @@ $(document).ready(function () {
             $("#main_search_input").autocomplete({
                 minLength: 1,
                 source: univ_data['학교리스트'],
+                delay:0,
+                autoFocus:true,
                 focus: function (event, ui) {
                     isFocus = true;
                     return false;
