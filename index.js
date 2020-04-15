@@ -23,9 +23,10 @@ $(document).ready(function () {
                     isFocus = true;
                     return false;
                 },
-                select: function (event, ui) {
+                select: function (event, ui) {          
+                    event.preventDefault();          
                     $("#main_search_input").val(ui.item.label);
-                    event.preventDefault();
+                    search();
                     return false;
                 },
             }).autocomplete("instance")._renderItem = function (ul, item) {
@@ -116,6 +117,7 @@ $(document).ready(function () {
 
 
     function search() {
+        isFocus=false;
         let univ = $('#main_search_input').val();
         if (univ === '') alert('학교를 입력해주세요');
         else {
@@ -123,8 +125,15 @@ $(document).ready(function () {
             if (univ == "카이스트" || univ == "KAIST") univ = "카이스트(KAIST)";
             if (univ == "유니스트" || univ == "UNIST") univ = "유니스트(UNIST)";
             let idx = univ_list.findIndex(obj => obj.label === univ);
-            if (idx === -1) alert('등록되지 않은 학교입니다');
+            let tmp_idx = univ_list.findIndex(obj => obj.label === univ+"학교");
+            if (idx === -1 && tmp_idx === -1) {                
+                alert('등록되지 않은 학교입니다');               
+            }
             else {
+                if(idx === -1) {
+                    idx = tmp_idx;
+                    univ +="학교";
+                }
                 let selected = univ_list[idx];
                 let district_data = univ_data[selected.district];
                 let main_univ_idx = district_data.findIndex(obj => obj['대학명'] === univ);
