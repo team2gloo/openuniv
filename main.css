@@ -1,16 +1,24 @@
 @font-face {
     font-family: 'BMHANNAPro';
-    src:  local('BMHANNAPro'),URL('./fonts/BMHANNAPro.woff') format('woff');
+    font-display: fallback;
+    src:  local('BM HANNA Pro'),
+    local('배달의민족 한나체 Pro'),
+    URL('./fonts/BMHANNAPro.woff') format('woff');
 }
 @font-face {
     font-family: 'yg-jalnan';
-    src: local('yg-jalnan'),URL('./fonts/JalnanOTF.otf') format('opentype');
+    font-display: fallback;
+    src: local('여기어때 잘나체'),
+    local('여기어때 잘나체 OTF'),
+    URL('./fonts/JalnanOTF.otf') format('opentype');
 }
 @font-face {
     font-family: 'BMHANNAAir';
-    src: local('BMHANNAAir'),URL('./fonts/BMHANNAAir.woff') format('woff');
+    font-display: fallback;
+    src: local('BM HANNA Air'),
+    local('배달의민족 한나체 Air'),
+    URL('./fonts/BMHANNAAir.woff') format('woff');
 }
-
 
 
 * {

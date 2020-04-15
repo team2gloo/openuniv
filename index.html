@@ -7,7 +7,7 @@
         content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title>대학교 개강 알리미</title>
     <!--css-->
-    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="main.css" />
+    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="main.css?v=0415" />
     <link rel="stylesheet" type="text/css" id="applicationStylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <!--script-->
@@ -21,8 +21,7 @@
     <!-- xlsx.js (C) 2013-present SheetJS -- http://sheetjs.com  -->
     <script type="text/javascript" lang="javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.1/xlsx.full.min.js"></script>
-    <script type="text/javascript" lang="javascript"
-        src="index.js?v=0415"></script>
+
     
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-touch-icon-57x57.png">
@@ -106,7 +105,7 @@
 
                 <div
                     style="position: relative; text-align: right;right: 5px; font-size:13px;color: rgba(180, 180, 180, 0.9); text-align: right;">
-                    <span id="team_email">문의 : team2gloo@gmail.com</span>
+                    <span id="team_email">문의 <span style="font-family: BMHANNAAir;">:</span> team2gloo@gmail.com</span>
                 </div>
                 <div
                     style="position: relative; right: 5px; font-size:13px;color: rgba(180, 180, 180, 0.7); text-align: right;">
@@ -198,7 +197,7 @@
 
                 <div id="univ_main_3">
                     <div class="only_mobile">
-                        <span><span id="univ_main_3_district">부산</span><span>지역<br />대학교 현황</span></span>
+                        <span><span id="univ_main_3_district"></span><span>지역<br />대학교 현황</span></span>
 
                     </div>
                     <div id="univ_main_3_1" class="univ_scroll">
@@ -219,7 +218,8 @@
     </div>
 
     </div>
-
+    <script type="text/javascript" lang="javascript"
+        src="index.js?v=0415"></script>
 </body>
 
 </html>
