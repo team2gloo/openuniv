@@ -1,1 +1,1 @@
-# openuniv
+# openuniv.kr
