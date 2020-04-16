@@ -17,6 +17,10 @@ function list_click(_univ) {
     $('#main_search_input').val(_univ);
     search();
 }
+function goPage(current, pageId) {
+    $(current).fadeOut(200); $(pageId).delay(200).fadeIn(200);
+    $('html, body').animate({ scrollTop: 0 }, 0);
+}
 function search() {
     isFocus=false;
     let univ = $('#main_search_input').val();
@@ -225,7 +229,7 @@ $(document).ready(function () {
     if (location.hash == '#univ') location.href = "";
     window.addEventListener("hashchange", () => {
         if (window.location.hash == "#univ") goPage("#main", '#univ');
-        else goPage('#univ', '#main');
+        else goPage('#univ', '#main');        
     }, false);
     
     
@@ -245,9 +249,7 @@ $(document).ready(function () {
         $('html, body').animate({ scrollTop: 0 }, 400, "easeOutQuart");
     })
     $('#team_email').on("click", copyToClipboard);
-    function goPage(current, pageId) {
-        $(current).fadeOut(200); $(pageId).delay(200).fadeIn(200);
-    }
+    
     $('#univ_main_1_2_go2gloo').on("click", () => { window.open('https://nmn0324.wixsite.com/2gloo') });
     $('#univ_main_1_2_goUniv').on("click", () => {
         if ($('#univ_url').val() !== '') window.open($('#univ_url').val());
