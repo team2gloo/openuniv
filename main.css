@@ -360,7 +360,7 @@
     #univ_main_1_2{
         margin-top:10%; 
         text-align: left;  
-        color: #A7A7A7;
+        color: #888888;
         font-style: normal;
         font-weight: normal;
         font-size: 0.2rem;
@@ -801,7 +801,7 @@
     #univ_main_1_2{
         margin-top:0.3rem; 
         text-align: left;  
-        color: #A7A7A7;
+        color: #888888;
         font-style: normal;
         font-weight: normal;
         font-size: 0.14rem;
@@ -1004,7 +1004,9 @@ body {
     content: "";
 }
 
-
+.main_list_univ_name:hover{
+    cursor: pointer;
+}
 /* .main_univ_list_table li:nth-last-child(1){
     background-color: red;
 } */

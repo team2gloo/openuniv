@@ -3,12 +3,125 @@ let univ_data = {};
 let color_class = {};
 let total_data;
 let chart2 = null;
-let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197'];
+let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197','#CF5948','#A5CF29'];
+function copyToClipboard() {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val('team2gloo@gmail.com').select();
+    document.execCommand("copy");
+    $temp.remove();
+    alert("복사되었습니다.")
+}
+
+function list_click(_univ) {
+    $('#main_search_input').val(_univ);
+    search();
+}
+function search() {
+    isFocus=false;
+    let univ = $('#main_search_input').val();
+    if (univ === '') alert('학교를 입력해주세요');
+    else {
+        let univ_list = univ_data['학교리스트'];
+        if (univ == "카이스트" || univ == "KAIST") univ = "카이스트(KAIST)";
+        if (univ == "유니스트" || univ == "UNIST") univ = "유니스트(UNIST)";
+        if (univ.indexOf("ERICA") !== -1 || univ.indexOf("에리카") !== -1 ) univ = "한양대학교ERICA";
+        let idx = univ_list.findIndex(obj => obj.label === univ);
+        let tmp_idx = univ_list.findIndex(obj => obj.label === univ+"학교");
+        if (idx === -1 && tmp_idx === -1) {                
+            alert('등록되지 않은 학교입니다');               
+        }
+        else {
+            if(idx === -1) {
+                idx = tmp_idx;
+                univ +="학교";
+            }
+            let selected = univ_list[idx];
+            let district_data = univ_data[selected.district];
+            let main_univ_idx = district_data.findIndex(obj => obj['대학명'] === univ);
+            let main_univ = district_data[main_univ_idx];
+            univ_name = main_univ["대학명"];
+            $("#univ_header_title_mobile").html(univ_name);
+            $('#univ_after').hide();
+            $('#univ_url').val('');
+            if (univ_name.indexOf("대학교") !== -1) {
+                univ_name = univ_name.replace("대학교", "");
+                $('#univ_after').show();
+            }
+            $("#univ_main_1_1_univ").html(univ_name);
+            $("#univ_main_1_1_date").html(main_univ['개강일']);
+            $("#univ_url").val(jQuery.trim(main_univ['홈페이지']));
+            let district_total = total_data[total_data.findIndex(obj => obj[0] === selected.district)];
+
+
+
+            var ctx2 = $("#univ_main_2_1_graph").get(0).getContext("2d");
+            let column = Object.values(total_data[0]).slice(4);
+            let column_data = Object.values(district_total).slice(4);
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: column_data,
+                        backgroundColor: color_arr.slice(0, column.length),
+                        borderWidth: 0
+                    }],
+                    labels: column,
+                },
+                options: {
+                    tooltips: {
+                        bodyFontSize: 15,
+                        bodyFontFamily: "yg-jalnan",
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.labels[tooltipItem.index] + " : " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " 곳";;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    responsive: true,
+                    cutoutPercentage: 80,
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    },
+                }
+            };
+            if (chart2 != null) chart2.destroy();
+            chart2 = new Chart(ctx2, config);
+            $('#univ_main_2_1_1_district').html(district_total[0]);
+            $('#univ_main_3_district').html(district_total[0]);
+            $('#univ_main_2_1_1_count').html(district_total[3]);
+            $('#univ_main_2_1_1_date').html(district_total[1]);
+            let date_input = '';
+            let count_input = '';
+            for (let i = 0; i < column.length; i++) {
+                date_input += '<span class="' + color_class[column[i]] + '">' + column[i] + '</span>';
+                count_input += '<span>' + column_data[i] + ' 곳</span>';
+            }
+            $('#univ_main_2_2_date').html(date_input);
+            $('#univ_main_2_2_count').html(count_input);
+            let list_univ_input = '';
+            let list_date_input = '';
+            for (let i = 0; i < district_data.length; i++) {
+                let univ_date = district_data[i];
+                list_univ_input += '<span>' + univ_date['대학명'] + '</span>';
+                list_date_input += '<span class="' + color_class[univ_date['group']] + '">' + univ_date['개강일'] + '</span>';
+            }
+            $('#univ_main_3_1_univ').html(list_univ_input);
+            $('#univ_main_3_1_date').html(list_date_input);
+            location.href = "#univ";
+        }
+
+    }
+}
 $(document).ready(function () {
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0412').then((res) => {
+    fetch('./data.xlsx?version=0416').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
             for (let i = 0; i < data.SheetNames.length; i++) {
@@ -99,7 +212,7 @@ $(document).ready(function () {
                 list_input += '</span></div><div class="div_main_univ_list_table"><ul class="main_univ_list_table">';
                 for (let j = 0; j < district_data.length; j++) {
                     let tmp = district_data[j];
-                    list_input += '<li><span>' + tmp['대학명'] + '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
+                    list_input += '<li><span class="main_list_univ_name" onclick="list_click(\''+tmp['대학명']+'\')">' + tmp['대학명'] + '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
                 }
                 if (district_data.length % 2 == 1) list_input += '<li></li>';
                 list_input += '</ul></div>';
@@ -114,107 +227,8 @@ $(document).ready(function () {
         if (window.location.hash == "#univ") goPage("#main", '#univ');
         else goPage('#univ', '#main');
     }, false);
-
-
-    function search() {
-        isFocus=false;
-        let univ = $('#main_search_input').val();
-        if (univ === '') alert('학교를 입력해주세요');
-        else {
-            let univ_list = univ_data['학교리스트'];
-            if (univ == "카이스트" || univ == "KAIST") univ = "카이스트(KAIST)";
-            if (univ == "유니스트" || univ == "UNIST") univ = "유니스트(UNIST)";
-            let idx = univ_list.findIndex(obj => obj.label === univ);
-            let tmp_idx = univ_list.findIndex(obj => obj.label === univ+"학교");
-            if (idx === -1 && tmp_idx === -1) {                
-                alert('등록되지 않은 학교입니다');               
-            }
-            else {
-                if(idx === -1) {
-                    idx = tmp_idx;
-                    univ +="학교";
-                }
-                let selected = univ_list[idx];
-                let district_data = univ_data[selected.district];
-                let main_univ_idx = district_data.findIndex(obj => obj['대학명'] === univ);
-                let main_univ = district_data[main_univ_idx];
-                univ_name = main_univ["대학명"];
-                $("#univ_header_title_mobile").html(univ_name);
-                $('#univ_after').hide();
-                $('#univ_url').val('');
-                if (univ_name.indexOf("대학교") !== -1) {
-                    univ_name = univ_name.replace("대학교", "");
-                    $('#univ_after').show();
-                }
-                $("#univ_main_1_1_univ").html(univ_name);
-                $("#univ_main_1_1_date").html(main_univ['개강일']);
-                $("#univ_url").val(jQuery.trim(main_univ['홈페이지']));
-                let district_total = total_data[total_data.findIndex(obj => obj[0] === selected.district)];
-
-
-
-                var ctx2 = $("#univ_main_2_1_graph").get(0).getContext("2d");
-                let column = Object.values(total_data[0]).slice(4);
-                let column_data = Object.values(district_total).slice(4);
-                var config = {
-                    type: 'doughnut',
-                    data: {
-                        datasets: [{
-                            data: column_data,
-                            backgroundColor: color_arr.slice(0, column.length),
-                            borderWidth: 0
-                        }],
-                        labels: column,
-                    },
-                    options: {
-                        tooltips: {
-                            bodyFontSize: 15,
-                            bodyFontFamily: "yg-jalnan",
-                            callbacks: {
-                                label: function (tooltipItem, data) {
-                                    return data.labels[tooltipItem.index] + " : " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " 곳";;
-                                }
-                            }
-                        },
-                        legend: {
-                            display: false
-                        },
-                        responsive: true,
-                        cutoutPercentage: 80,
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true
-                        },
-                    }
-                };
-                if (chart2 != null) chart2.destroy();
-                chart2 = new Chart(ctx2, config);
-                $('#univ_main_2_1_1_district').html(district_total[0]);
-                $('#univ_main_3_district').html(district_total[0]);
-                $('#univ_main_2_1_1_count').html(district_total[3]);
-                $('#univ_main_2_1_1_date').html(district_total[1]);
-                let date_input = '';
-                let count_input = '';
-                for (let i = 0; i < column.length; i++) {
-                    date_input += '<span class="' + color_class[column[i]] + '">' + column[i] + '</span>';
-                    count_input += '<span>' + column_data[i] + ' 곳</span>';
-                }
-                $('#univ_main_2_2_date').html(date_input);
-                $('#univ_main_2_2_count').html(count_input);
-                let list_univ_input = '';
-                let list_date_input = '';
-                for (let i = 0; i < district_data.length; i++) {
-                    let univ_date = district_data[i];
-                    list_univ_input += '<span>' + univ_date['대학명'] + '</span>';
-                    list_date_input += '<span class="' + color_class[univ_date['group']] + '">' + univ_date['개강일'] + '</span>';
-                }
-                $('#univ_main_3_1_univ').html(list_univ_input);
-                $('#univ_main_3_1_date').html(list_date_input);
-                location.href = "#univ";
-            }
-
-        }
-    }
+    
+    
 
     $("#main_search_input").keyup(function (e) {
         if (e.keyCode == 13) {
@@ -238,15 +252,5 @@ $(document).ready(function () {
     $('#univ_main_1_2_goUniv').on("click", () => {
         if ($('#univ_url').val() !== '') window.open($('#univ_url').val());
     });
-
-    function copyToClipboard() {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val('team2gloo@gmail.com').select();
-        document.execCommand("copy");
-        $temp.remove();
-        alert("복사되었습니다.")
-    }
-
 
 });
