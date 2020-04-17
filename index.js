@@ -126,7 +126,7 @@ $(document).ready(function () {
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0416_2').then((res) => {
+    fetch('./data.xlsx?version=0417').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
             for (let i = 0; i < data.SheetNames.length; i++) {
