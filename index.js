@@ -251,7 +251,7 @@ $(document).ready(function () {
     })
     $('#team_email').on("click", copyToClipboard);
     
-    $('#univ_main_1_2_go2gloo').on("click", () => { window.open('https://nmn0324.wixsite.com/2gloo') });
+    $('#univ_main_1_2_go2gloo').on("click", () => { window.open('https://www.2gloo.kr/') });
     $('#univ_main_1_2_goUniv').on("click", () => {
         if ($('#univ_url').val() !== '') window.open($('#univ_url').val());
     });
