@@ -78,7 +78,8 @@ function search() {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                return data.labels[tooltipItem.index] + " : " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " 곳";;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]/district_total[3])*100;
+                                return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";;
                             }
                         }
                     },
@@ -172,8 +173,8 @@ $(document).ready(function () {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-
-                                return data.labels[tooltipItem.index] + " : " + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + " 곳";;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]/total_data[1][3])*100;
+                                return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";
                             }
                         }
                     },
