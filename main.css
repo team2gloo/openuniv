@@ -223,6 +223,29 @@
         font-size: 2.17vmin;
         color: rgba(171, 171, 171, 1);
     }
+    #main_2gloo_instagram {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        text-align: center;
+        font-family: 'BMHANNAPro';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.5vmin;
+        color: rgba(171, 171, 171, 1);
+        padding-right: 1vmin;        
+    }
+    #_2gloo_instagram{
+        display: flex;        
+    }
+    
+    #_2gloo_instagram img{
+        width: 1.5vmin;
+        height: 1.5vmin;
+        margin-left:0.3vmin;
+        min-width: 10px;
+        min-height: 10px;
+    }
     #div_main_univ_list{
         width: 100%; 
         background-color: #F2F6FC; 
@@ -670,9 +693,30 @@
         font-weight: normal;
         font-size: 0.12rem;
         color: rgba(171, 171, 171, 1);
-        margin-bottom: 0.49rem;
+        margin-bottom: 0.3rem;
+    }
+    #main_2gloo_instagram {
+        text-align: center;
+        font-family: 'BMHANNAPro';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 0.1rem;
+        color: rgba(171, 171, 171, 1);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 0.05rem;
+        margin-bottom: 0.05rem;
+    }
+    #_2gloo_instagram{
+        display: flex;        
     }
     
+    #_2gloo_instagram img{
+        width: 0.1rem;
+        height: 0.1rem;
+        margin-left:0.02rem;
+    }
     #div_main_univ_list{
         width: 100%;
         min-height: min-content;
@@ -990,7 +1034,10 @@ body {
     vertical-align: middle;
 }
 
-
+#_2gloo_instagram:hover{
+    cursor: pointer;
+    color:#000000;
+}
 
 #main_univ_list{
     width: 100%;
