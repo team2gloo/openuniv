@@ -2,8 +2,9 @@ let isFocus = false;
 let univ_data = {};
 let color_class = {};
 let total_data;
+// let sheetNames;
 let chart2 = null;
-let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197','#CF5948','#A5CF29'];
+let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197', '#CF5948', '#A5CF29'];
 function copyToClipboard() {
     var $temp = $("<input>");
     $("body").append($temp);
@@ -22,23 +23,23 @@ function goPage(current, pageId) {
     $('html, body').animate({ scrollTop: 0 }, 0);
 }
 function search() {
-    isFocus=false;
+    isFocus = false;
     let univ = $('#main_search_input').val();
     if (univ === '') alert('학교를 입력해주세요');
     else {
         let univ_list = univ_data['학교리스트'];
         if (univ == "카이스트" || univ == "KAIST") univ = "카이스트(KAIST)";
         if (univ == "유니스트" || univ == "UNIST") univ = "유니스트(UNIST)";
-        if (univ.indexOf("ERICA") !== -1 || univ.indexOf("에리카") !== -1 ) univ = "한양대학교ERICA";
+        if (univ.indexOf("ERICA") !== -1 || univ.indexOf("에리카") !== -1) univ = "한양대학교ERICA";
         let idx = univ_list.findIndex(obj => obj.label === univ);
-        let tmp_idx = univ_list.findIndex(obj => obj.label === univ+"학교");
-        if (idx === -1 && tmp_idx === -1) {                
-            alert('등록되지 않은 학교입니다');               
+        let tmp_idx = univ_list.findIndex(obj => obj.label === univ + "학교");
+        if (idx === -1 && tmp_idx === -1) {
+            alert('등록되지 않은 학교입니다');
         }
         else {
-            if(idx === -1) {
+            if (idx === -1) {
                 idx = tmp_idx;
-                univ +="학교";
+                univ += "학교";
             }
             let selected = univ_list[idx];
             let district_data = univ_data[selected.district];
@@ -78,7 +79,7 @@ function search() {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]/district_total[3])*100;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / district_total[3]) * 100;
                                 return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";;
                             }
                         }
@@ -122,27 +123,37 @@ function search() {
 
     }
 }
+// function order_list_by_group(group) {
+//     let ordered_list = new Array;
+//     for (let i = 2; i < sheetNames.length; i++) {
+//         univ_data[sheetNames[i]].map((univ) => {
+//             if (univ.group === group) ordered_list.push(univ);
+//         });
+//     }
+//     console.log(ordered_list);
+// }
 $(document).ready(function () {
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0420_2').then((res) => {
+    fetch('./data.xlsx?version=0421').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
+            sheetNames = data.SheetNames;
             for (let i = 0; i < data.SheetNames.length; i++) {
                 univ_data[data.SheetNames[i]] = XLSX.utils.sheet_to_json(data.Sheets[data.SheetNames[i]]);
             }
             $("#main_search_input").autocomplete({
                 minLength: 1,
                 source: univ_data['학교리스트'],
-                delay:0,
-                autoFocus:true,
+                delay: 0,
+                autoFocus: true,
                 focus: function (event, ui) {
                     isFocus = true;
                     return false;
                 },
-                select: function (event, ui) {          
-                    event.preventDefault();          
+                select: function (event, ui) {
+                    event.preventDefault();
                     $("#main_search_input").val(ui.item.label);
                     search();
                     return false;
@@ -173,7 +184,7 @@ $(document).ready(function () {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]/total_data[1][3])*100;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / total_data[1][3]) * 100;
                                 return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";
                             }
                         }
@@ -217,12 +228,13 @@ $(document).ready(function () {
                 list_input += '</span></div><div class="div_main_univ_list_table"><ul class="main_univ_list_table">';
                 for (let j = 0; j < district_data.length; j++) {
                     let tmp = district_data[j];
-                    list_input += '<li><span class="main_list_univ_name" onclick="list_click(\''+tmp['대학명']+'\')">' + tmp['대학명'] + '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
+                    list_input += '<li><span class="main_list_univ_name" onclick="list_click(\'' + tmp['대학명'] + '\')">' + tmp['대학명'] + '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
                 }
                 if (district_data.length % 2 == 1) list_input += '<li></li>';
                 list_input += '</ul></div>';
             }
             $('#main_univ_list').html(list_input);
+            // order_list_by_group("4월");
         });
 
 
@@ -230,10 +242,10 @@ $(document).ready(function () {
     if (location.hash == '#univ') location.href = "";
     window.addEventListener("hashchange", () => {
         if (window.location.hash == "#univ") goPage("#main", '#univ');
-        else goPage('#univ', '#main');        
+        else goPage('#univ', '#main');
     }, false);
-    
-    
+
+
 
     $("#main_search_input").keyup(function (e) {
         if (e.keyCode == 13) {
@@ -250,7 +262,7 @@ $(document).ready(function () {
         $('html, body').animate({ scrollTop: 0 }, 400, "easeOutQuart");
     })
     $('#team_email').on("click", copyToClipboard);
-    
+
     $('#_2gloo_instagram').on("click", () => { window.open('https://www.instagram.com/univ_2gloo/') });
     $('#univ_main_1_2_go2gloo').on("click", () => { window.open('https://www.2gloo.kr/') });
     $('#univ_main_1_2_goUniv').on("click", () => {
