@@ -5,6 +5,35 @@ let total_data;
 // let sheetNames;
 let chart2 = null;
 let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197', '#CF5948', '#A5CF29'];
+function getCookie(name) {
+    var cookie = document.cookie;
+    if (document.cookie != "") {
+        let cookie_array = cookie.split("; ");
+        for (let index in cookie_array) {
+            let cookie_name = cookie_array[index].split("=");
+            if (cookie_name[0] == "openNotice") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return;
+}
+function openNotice() { 
+    var cookieCheck = getCookie("openNotice");
+    if (cookieCheck != "N") $('#div_notice_blur').css('display','flex');
+
+}
+function setCookie(name, value, expiredays) {
+    var date = new Date();
+    date.setDate(date.getDate() + expiredays);
+    document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
+}
+
+function closeNotice() {
+    setCookie("openNotice", "N", 1);
+    $('#div_notice_blur').hide();
+}
+
 function copyToClipboard() {
     var $temp = $("<input>");
     $("body").append($temp);
@@ -133,10 +162,11 @@ function search() {
 //     console.log(ordered_list);
 // }
 $(document).ready(function () {
+    openNotice();
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0423').then((res) => {
+    fetch('./data.xlsx?version=0423_2').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
             sheetNames = data.SheetNames;
@@ -268,5 +298,5 @@ $(document).ready(function () {
     $('#univ_main_1_2_goUniv').on("click", () => {
         if ($('#univ_url').val() !== '') window.open($('#univ_url').val());
     });
-
+    $('#close_icon').on("click",closeNotice);
 });
