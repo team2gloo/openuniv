@@ -301,8 +301,29 @@
         font-style: normal;
         font-weight: normal;
         font-size: 2vmin;
-        
     }
+    .update_mark{
+        background-color:red; 
+        border-radius:0.5vmin; 
+        position:relative;        
+        left:0.5vmin;
+        display:inline-block; 
+        bottom:1.5vmin;
+        margin-right:-0.8vmin;
+        width:0.8vmin; 
+        height:0.8vmin;
+    }
+    /* .update_mark{        
+        position:relative; 
+        margin-right:-1.5vmin;
+        bottom:1.5vmin;
+        left:0.5vmin;
+        display:inline-block;
+        font-size:1.5vmin;   
+        font-weight: bold;
+        color:red;
+        text-align: center;
+    } */
     .main_univ_list_table li:nth-child(4n-1) {
         background-color: #f2f6fc;
     }
@@ -808,9 +829,29 @@
         font-size: 0.16rem;
         
     }
+    .update_mark{
+        background-color:red; 
+        border-radius:0.08rem;
+        left:0.05rem;
+        position:relative; 
+        display:inline-block; 
+        bottom:0.1rem;
+        margin-right:-0.08rem;
+        width:0.08rem; 
+        height:0.08rem;
+    }
     
-    
-    
+     /* .update_mark{        
+        position:relative;
+        bottom:0.1rem;
+        margin-right:-0.1rem;
+        left:0.05rem;
+        display:inline-block;
+        font-size:0.1rem;   
+        font-weight: bold;
+        color:red;
+        text-align: center;
+    } */
     #univ{
         background-color: #F2F6FC; 
         width: 100%; 
@@ -1129,7 +1170,9 @@ body {
     clear: both;
     content: "";
 }
-
+.main_list_univ_name{
+    display:inline-block;
+}
 .main_list_univ_name:hover{
     cursor: pointer;
 }

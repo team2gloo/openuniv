@@ -166,7 +166,7 @@ $(document).ready(function () {
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0424').then((res) => {
+    fetch('./data.xlsx?version=0426').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
             sheetNames = data.SheetNames;
@@ -258,7 +258,10 @@ $(document).ready(function () {
                 list_input += '</span></div><div class="div_main_univ_list_table"><ul class="main_univ_list_table">';
                 for (let j = 0; j < district_data.length; j++) {
                     let tmp = district_data[j];
-                    list_input += '<li><span class="main_list_univ_name" onclick="list_click(\'' + tmp['대학명'] + '\')">' + tmp['대학명'] + '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
+                    list_input += '<li><span class="main_list_univ_name" onclick="list_click(\'' + tmp['대학명'] + '\')">' + tmp['대학명'];
+                    if(tmp['업데이트']==='N') list_input += '<div class="update_mark"></div>';
+                    // if(tmp['업데이트']==='N') list_input += '<div class="update_mark">N</div>';
+                    list_input += '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
                 }
                 if (district_data.length % 2 == 1) list_input += '<li></li>';
                 list_input += '</ul></div>';
