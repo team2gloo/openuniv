@@ -304,9 +304,8 @@
     }
     .update_mark{
         background-color:red; 
-        border-radius:0.5vmin; 
-        position:relative;        
-        left:0.5vmin;
+        border-radius:0.8vmin; 
+        position:relative; 
         display:inline-block; 
         bottom:1.5vmin;
         margin-right:-0.8vmin;
@@ -832,7 +831,6 @@
     .update_mark{
         background-color:red; 
         border-radius:0.08rem;
-        left:0.05rem;
         position:relative; 
         display:inline-block; 
         bottom:0.1rem;
