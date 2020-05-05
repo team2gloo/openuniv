@@ -183,7 +183,7 @@
     }
     #div_main_total_table {
         width: 100%;
-        height: 11.5vmin;
+        height: 13.67vmin;
     }
     #main_total_table {
         margin: auto;
@@ -214,15 +214,7 @@
         margin-left: 2.8vmin;
         margin-right: 2.8vmin;
         overflow: hidden;
-    }
-    #main_offline_univ {
-        text-align: center;
-        font-family: 'BMHANNAPro';
-        font-style: normal;
-        font-weight: normal;
-        font-size: 2.17vmin;
-        color: rgba(171, 171, 171, 1);
-    }
+    }   
     #main_2gloo_instagram {
         display: flex;
         flex-direction: row;
@@ -301,6 +293,9 @@
         font-style: normal;
         font-weight: normal;
         font-size: 2vmin;
+    }
+    .main_f_f{
+        font-size:1.5vmin;
     }
     .update_mark{
         background-color:red; 
@@ -399,6 +394,15 @@
     #univ_main_1_1_date{
         color: #0C4CE8;
         font-size: 0.7rem;
+        line-height: 0;
+        position: relative;
+    }
+    .univ_main_f_f{
+        position: absolute;
+        font-size: 0.3rem;        
+        text-align: center;
+        top:0.95rem;
+        width:100%;
     }
     #univ_main_1_2{
         margin-top:10%; 
@@ -500,8 +504,23 @@
         font-family: 'BMHANNAPro'; 
         font-style: normal;
         font-weight: normal; 
-        line-height: 0.8rem; 
         overflow-y: scroll;
+    }
+    .univ_f_f{
+        font-size: 0.18rem;
+    }
+    #univ_main_3_1 span{
+        height:0.8rem;
+    }
+    .univ_update_mark{
+        background-color:red; 
+        border-radius:0.8vmin; 
+        position:relative; 
+        display:inline-block; 
+        bottom:1.5vmin;
+        margin-right:-0.8vmin;
+        width:0.8vmin; 
+        height:0.8vmin;
     }
     #univ_main_3_1_date{
         width: max-content; 
@@ -707,7 +726,7 @@
     
     #div_main_total_table {
         width: 100%;
-        height: 0.95rem;
+        height: 1.25rem;
     }
     
     #main_total_table {
@@ -746,15 +765,6 @@
         overflow: hidden;
     }
     
-    #main_offline_univ {
-        text-align: center;
-        font-family: 'BMHANNAPro';
-        font-style: normal;
-        font-weight: normal;
-        font-size: 0.12rem;
-        color: rgba(171, 171, 171, 1);
-        margin-bottom: 0.3rem;
-    }
     #main_2gloo_instagram {
         text-align: center;
         font-family: 'BMHANNAPro';
@@ -827,6 +837,9 @@
         font-weight: normal;
         font-size: 0.16rem;
         
+    }
+    .main_f_f{
+        font-size:0.1rem;
     }
     .update_mark{
         background-color:red; 
@@ -920,7 +933,17 @@
     #univ_main_1_1_date{
         color: #0C4CE8;
         font-size: 0.3rem;
+        line-height: 0;
+        position: relative;
     }
+    .univ_main_f_f{
+        position: absolute;
+        width:100%;
+        text-align: center;
+        font-size: 0.15rem;
+        top:0.45rem;
+    }
+    
     #univ_main_1_2{
         margin-top:0.3rem; 
         text-align: left;  
@@ -1026,15 +1049,29 @@
     }
     #univ_main_3_1{
         width: 100%; 
-        margin-top: 0.25rem; 
+        margin-top: 0.4rem; 
         font-size: 0.16rem; 
         font-family: 'BMHANNAPro'; 
         font-style: normal;
         font-weight: normal; 
-        line-height: 0.5rem; 
         overflow-y: scroll;
     }
-    
+    .univ_f_f{
+        font-size: 0.1rem;
+    }
+    #univ_main_3_1 span{
+        height:0.5rem;
+    }
+    .univ_update_mark{
+        background-color:red; 
+        border-radius:0.08rem;
+        position:relative; 
+        display:inline-block; 
+        bottom:0.1rem;
+        margin-right:-0.08rem;
+        width:0.08rem; 
+        height:0.08rem;
+    }
     #univ_main_3_1_date{
         width: max-content; 
         margin-left:0.55rem; 

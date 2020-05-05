@@ -4,7 +4,7 @@ let color_class = {};
 let total_data;
 // let sheetNames;
 let chart2 = null;
-let color_arr = ['#33CAEF', '#F5A623', '#8C89FF', '#688197', '#CF5948', '#A5CF29'];
+let color_arr = [ '#CF5948', '#F5A623','#A5CF29', '#8C89FF', '#688197', '#33CAEF'];
 function getCookie(name) {
     var cookie = document.cookie;
     if (document.cookie != "") {
@@ -83,15 +83,17 @@ function search() {
                 $('#univ_after').show();
             }
             $("#univ_main_1_1_univ").html(univ_name);
+            console.log(main_univ['제한적 대면']);
             $("#univ_main_1_1_date").html(main_univ['개강일']);
+            if(main_univ['제한적 대면']==='O') $("#univ_main_1_1_date").append('<div class="univ_main_f_f">(제한적 대면)</div>')
             $("#univ_url").val(jQuery.trim(main_univ['홈페이지']));
             let district_total = total_data[total_data.findIndex(obj => obj[0] === selected.district)];
 
 
 
             var ctx2 = $("#univ_main_2_1_graph").get(0).getContext("2d");
-            let column = Object.values(total_data[0]).slice(4);
-            let column_data = Object.values(district_total).slice(4);
+            let column = Object.values(total_data[0]).slice(3);
+            let column_data = Object.values(district_total).slice(3);
             var config = {
                 type: 'doughnut',
                 data: {
@@ -108,7 +110,7 @@ function search() {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / district_total[3]) * 100;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / district_total[2]) * 100;
                                 return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";;
                             }
                         }
@@ -128,7 +130,7 @@ function search() {
             chart2 = new Chart(ctx2, config);
             $('#univ_main_2_1_1_district').html(district_total[0]);
             $('#univ_main_3_district').html(district_total[0]);
-            $('#univ_main_2_1_1_count').html(district_total[3]);
+            $('#univ_main_2_1_1_count').html(district_total[2]);
             $('#univ_main_2_1_1_date').html(district_total[1]);
             let date_input = '';
             let count_input = '';
@@ -142,8 +144,13 @@ function search() {
             let list_date_input = '';
             for (let i = 0; i < district_data.length; i++) {
                 let univ_date = district_data[i];
-                list_univ_input += '<span>' + univ_date['대학명'] + '</span>';
-                list_date_input += '<span class="' + color_class[univ_date['group']] + '">' + univ_date['개강일'] + '</span>';
+                list_univ_input += '<span>' + univ_date['대학명'];
+                if(univ_date['업데이트']==='N') list_univ_input += '<div class="univ_update_mark"></div>';
+                list_univ_input += '</span>';
+                list_date_input += '<span class="' + color_class[univ_date['group']] + '">' + univ_date['개강일'];
+                if(univ_date['제한적 대면']==='O') list_date_input += '<div class="univ_f_f">(제한적 대면)</div>';
+                list_date_input += '</span>';
+                
             }
             $('#univ_main_3_1_univ').html(list_univ_input);
             $('#univ_main_3_1_date').html(list_date_input);
@@ -166,7 +173,7 @@ $(document).ready(function () {
     $(window).resize(function () {
         $(".ui-autocomplete").hide();
     });
-    fetch('./data.xlsx?version=0501').then((res) => {
+    fetch('./data.xlsx?version=0505').then((res) => {
         res.arrayBuffer().then((ab) => {
             let data = XLSX.read(ab, { type: "array" });
             sheetNames = data.SheetNames;
@@ -195,8 +202,8 @@ $(document).ready(function () {
             };
             total_data = univ_data['통계'];
             var ctx = $("#main_graph_canvas").get(0).getContext("2d");
-            let column = Object.values(total_data[0]).slice(4);
-            let column_data = Object.values(total_data[1]).slice(4);
+            let column = Object.values(total_data[0]).slice(3);
+            let column_data = Object.values(total_data[1]).slice(3);
             var config = {
                 type: 'doughnut',
                 data: {
@@ -214,7 +221,7 @@ $(document).ready(function () {
                         bodyFontFamily: "yg-jalnan",
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / total_data[1][3]) * 100;
+                                let per = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] / total_data[1][2]) * 100;
                                 return data.labels[tooltipItem.index] + " : " + per.toFixed(1) + " %";
                             }
                         }
@@ -233,7 +240,7 @@ $(document).ready(function () {
             $('#main').fadeIn(1000);
             let style = "<style type='text/css'>";
             var chart = new Chart(ctx, config);
-            $('#main_univ_count').html(total_data[1][3]);
+            $('#main_univ_count').html(total_data[1][2]);
             $('#main_update_date').html(total_data[1][1]);
             style += "._0 {color:" + color_arr[0] + "; !important} ";
             color_class[column[0]] = '_0';
@@ -249,7 +256,6 @@ $(document).ready(function () {
             }
             $(style + "</style>").appendTo("head");
             $('#main_total_table').html(input);
-            $('#offline_univ').html(total_data[1][2]);
             let list_input = '';
             for (let i = 2; i < data.SheetNames.length; i++) {
                 let district_data = univ_data[data.SheetNames[i]];
@@ -258,10 +264,13 @@ $(document).ready(function () {
                 list_input += '</span></div><div class="div_main_univ_list_table"><ul class="main_univ_list_table">';
                 for (let j = 0; j < district_data.length; j++) {
                     let tmp = district_data[j];
+                    
                     list_input += '<li><span class="main_list_univ_name" onclick="list_click(\'' + tmp['대학명'] + '\')">' + tmp['대학명'];
                     if(tmp['업데이트']==='N') list_input += '<div class="update_mark"></div>';
                     // if(tmp['업데이트']==='N') list_input += '<div class="update_mark">N</div>';
-                    list_input += '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'] + '</span></li>'
+                    list_input += '</span><span class="' + color_class[tmp['group']] + '">' + tmp['개강일'];
+                    if(tmp['제한적 대면']==='O') list_input += '<div class="main_f_f">(제한적 대면)</div>';
+                    list_input += '</span></li>';
                 }
                 if (district_data.length % 2 == 1) list_input += '<li></li>';
                 list_input += '</ul></div>';
