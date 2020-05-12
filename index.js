@@ -24,7 +24,6 @@ function getCookie(name) {
 function openNotice() {
     let cookieCheck = getCookie("openSurvey");
     if (cookieCheck != "N") $('#div_notice_blur').css('display','flex');
-    $('#div_notice_blur').css('display', 'flex');
 }
 function setCookie(name, value, expiredays) {
     let date = new Date();
