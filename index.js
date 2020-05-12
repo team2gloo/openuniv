@@ -8,6 +8,7 @@ let chart2 = null;
 let chart2_partial = null;
 let color_arr_all = ['#CF5948', '#F5A623', '#A5CF29', '#8C89FF', '#688197', '#33CAEF'];
 let color_arr_partial = ['#CF5948', '#00B9F1', '#58C9B9'];
+let result;
 function getCookie(name) {
     let cookie = document.cookie;
     if (document.cookie != "") {
@@ -32,6 +33,8 @@ function setCookie(name, value, expiredays) {
 }
 
 function closeNotice() {
+    result += '&'+$("#opinion_form").serialize();
+    window.open('http://13.209.221.206/openuniv/survey.html?'+result);
     setCookie("openSurvey", "N", 365);
     $('#div_notice_blur').hide();
 }
@@ -417,7 +420,7 @@ $(document).ready(function () {
     $('#univ_main_1_2_goUniv').on("click", () => {
         if ($('#univ_url').val() !== '') window.open($('#univ_url').val());
     });
-    $('#close_icon').on("click", closeNotice);
+    
     $('#notice_2gloo_instagram').on("click", () => { window.open('https://www.instagram.com/univ_2gloo/') });
     $('#survey_introApp').on("click", () => { window.open('https://www.2gloo.kr/') });
 
@@ -478,51 +481,19 @@ $(document).ready(function () {
         }
     });
     $("#survey_submit").on("click", () => {
-        if ($("#survey_submit").hasClass("enabled")) {
-            let survey_form = $("#survey_form");
-            survey_form.attr('action','http://13.209.221.206:80/openuniv/Survey.php');
-            survey_form.attr('method','post');
-            survey_form.attr('target','iframe');
-            survey_form.submit();
+        if ($("#survey_submit").hasClass("enabled")) {           
+            
+            result =$("#survey_form").serialize();
             $("#div_survey").fadeOut(200);
-            $("#div_opinion").delay(200).fadeIn(200);
-            // console.log(survey_result);
-            // $.ajax({
-            //     type: 'post',
-            //     url: 'http://13.209.221.206/openuniv/Survey.php',
-            //     data: survey_result,
-            //     error: function (xhr, status, error) {
-            //         alert(error);
-            //     },
-            //     success: function () {
-            //         $("#div_survey").fadeOut(200);
-            //         $("#div_opinion").delay(200).fadeIn(200);
-            //     }
-            // });
+            $("#div_opinion").delay(200).fadeIn(200);           
         }
     })
+    $('#close_icon').on("click", ()=>{
+        closeNotice();
+    });
     $("#opinion_submit").on("click", () => {
         if ($("#opinion_submit").hasClass("enabled")) {
-            let opinion_form = $("#opinion_form");
-            opinion_form.attr('action','http://13.209.221.206:80/openuniv/Opinion.php');
-            opinion_form.attr('method','post');
-            opinion_form.attr('target','iframe');
-            opinion_form.submit();
-            alert("답변 감사합니다");
-            closeNotice();
-            // let opinion_result = $("#opinion_form").serialize();
-            // $.ajax({
-            //     type: 'post',
-            //     url: 'http://13.209.221.206/openuniv/Opinion.php',
-            //     data: opinion_result,
-            //     error: function (xhr, status, error) {
-            //         alert(error);
-            //     },
-            //     success: function () {
-            //         alert("답변 감사합니다");
-            //         closeNotice();
-            //     }
-            // });
+            closeNotice();        
         }
     })
 });
