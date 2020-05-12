@@ -23,7 +23,7 @@ function getCookie(name) {
 }
 function openNotice() {
     let cookieCheck = getCookie("openSurvey");
-    if (cookieCheck != "N") $('#div_notice_blur').css('display', 'flex');
+    if (cookieCheck != "N") $('#div_notice_blur').css('display','flex');
 }
 function setCookie(name, value, expiredays) {
     let date = new Date();
@@ -85,7 +85,6 @@ function search() {
                 $('#univ_after').show();
             }
             $("#univ_main_1_1_univ").html(univ_name);
-            console.log(main_univ['제한적 대면']);
             $("#univ_main_1_1_date").html(main_univ['개강일']);
             if (main_univ['제한적 대면'] === 'O') $("#univ_main_1_1_date").append('<div class="univ_main_f_f">(제한적 대면)</div>')
             $("#univ_url").val(jQuery.trim(main_univ['홈페이지']));
@@ -94,8 +93,8 @@ function search() {
 
 
             let ctx2 = $("#univ_main_2_1_graph").get(0).getContext("2d");
-            let column_all = Object.values(total_data[0]).slice(3, 8);
-            let column_data_all = Object.values(district_total).slice(3, 8);
+            let column_all = Object.values(total_data[0]).slice(3,8);
+            let column_data_all = Object.values(district_total).slice(3,8);
             let ctx2_partial = $("#univ_main_2_1_graph_partial").get(0).getContext("2d");
             let column_partial = Object.values(total_data[0]).slice(8);
             let column_data_partial = Object.values(district_total).slice(8);
@@ -255,8 +254,8 @@ $(document).ready(function () {
             total_data = univ_data['통계'];
             let ctx_all = $("#main_graph_canvas_all").get(0).getContext("2d");
             let ctx_partial = $("#main_graph_canvas_partial").get(0).getContext("2d");
-            let column_all = Object.values(total_data[0]).slice(3, 8);
-            let column_data_all = Object.values(total_data[1]).slice(3, 8);
+            let column_all = Object.values(total_data[0]).slice(3,8);
+            let column_data_all = Object.values(total_data[1]).slice(3,8);
             let column_partial = Object.values(total_data[0]).slice(8);
             let column_data_partial = Object.values(total_data[1]).slice(8);
             let config = {
@@ -328,13 +327,13 @@ $(document).ready(function () {
             $('#main').fadeIn(1000);
             let style = "<style type='text/css'>";
             let chart = new Chart(ctx_all, config);
-            let chart_partial = new Chart(ctx_partial, config_partial);
+            let chart_partial = new Chart(ctx_partial,config_partial);
 
             $('#main_univ_count').html(total_data[1][2]);
             $('#main_update_date').html(total_data[1][1]);
 
 
-            style += "._0 {color:" + color_arr_all[0] + "; !important} ";
+            style += "._0 {color:" + color_arr_all[0] + "; !important} ";            
             color_class_all[column_all[0]] = '_0';
             let input = '<div class="main_total_table_column"><div class="main_total_table_column_date _0">';
             input += '<span>' + column_all[0] + '</span></div><div class="main_total_table_column_count"><span>' + column_data_all[0] + ' 곳</span></div></div>';
@@ -352,7 +351,7 @@ $(document).ready(function () {
             let input_partial = '<div class="main_total_table_column"><div class="main_total_table_column_date _0_partial">';
             input_partial += '<span>' + column_partial[0] + '</span></div><div class="main_total_table_column_count"><span>' + column_data_partial[0] + ' 곳</span></div></div>';
             for (let i = 1; i < column_partial.length; i++) {
-                let className = "_" + i + "_partial";
+                let className = "_" + i+"_partial";
                 color_class_partial[column_partial[i]] = className;
                 style += "." + className + "{color:" + color_arr_partial[i] + "; !important}";
                 input_partial += '<svg class="vertical_line" viewBox="0 0 1 60"><path fill="transparent" stroke="#E1E1E1" stroke-width="30px" stroke-linejoin="miter"stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" d="M 0 0 L 0 60"></path></svg>';
@@ -426,50 +425,47 @@ $(document).ready(function () {
         $("#survey_submit").addClass("enabled");
 
     });
-    $("#survey_submit").on("click", () => {
-        if ($("#survey_submit").hasClass("enabled")) {
-            let survey_result = $("#survey_form").serialize();
-            console.log(survey_result);
-            $.ajax({
-                type: 'post',
-                url: 'http://13.209.221.206/openuniv/Survey.php',
-                data: survey_result,
-
-            });
-            $("#div_survey").fadeOut(200);
-            $("#div_opinion").delay(200).fadeIn(200);
-        }
-    })
-    $('#main_btn_all').on("click", () => {
+   
+    $('#main_btn_all').on("click",()=>{
         if (!$("#main_btn_all").hasClass("active")) {
             $("#main_btn_all").addClass("active");
             $("#main_btn_partial").removeClass("active");
-            $('.main_category_partial').hide();
-            $('.main_category_all').show();
+            // $('.main_category_partial').hide();
+            // $('.main_category_all').show();
+            $(".main_category_partial").fadeOut(200);
+            $(".main_category_all").delay(200).fadeIn(200);
         }
     });
-    $('#main_btn_partial').on("click", () => {
+    $('#main_btn_partial').on("click",()=>{
         if (!$("#main_btn_partial").hasClass("active")) {
             $("#main_btn_partial").addClass("active");
             $("#main_btn_all").removeClass("active");
-            $('.main_category_all').hide();
-            $('.main_category_partial').show();
+            // $('.main_category_all').hide();
+            // $('.main_category_partial').show();
+            $(".main_category_all").fadeOut(200);
+            $(".main_category_partial").delay(200).fadeIn(200);
         }
     });
-    $('#univ_btn_all').on("click", () => {
+    $('#univ_btn_all').on("click",()=>{
         if (!$("#univ_btn_all").hasClass("active")) {
             $("#univ_btn_all").addClass("active");
             $("#univ_btn_partial").removeClass("active");
-            $('.univ_category_partial').hide();
-            $('.univ_category_all').show();
+            // $('.univ_category_partial').hide();
+            // $('.univ_category_all').show();
+            $(".univ_category_partial").fadeOut(200);
+            $(".univ_category_all").delay(200).fadeIn(200);
+            
         }
     });
-    $('#univ_btn_partial').on("click", () => {
+    $('#univ_btn_partial').on("click",()=>{
         if (!$("#univ_btn_partial").hasClass("active")) {
             $("#univ_btn_partial").addClass("active");
             $("#univ_btn_all").removeClass("active");
-            $('.univ_category_all').hide();
-            $('.univ_category_partial').show();
+            // $('.univ_category_all').hide();
+            // $('.univ_category_partial').show();
+            $(".univ_category_all").fadeOut(200);
+            $(".univ_category_partial").delay(200).fadeIn(200);
+            
         }
     });
 
@@ -481,16 +477,52 @@ $(document).ready(function () {
             $("#opinion_submit").removeClass("enabled");
         }
     });
+    $("#survey_submit").on("click", () => {
+        if ($("#survey_submit").hasClass("enabled")) {
+            let survey_form = $("#survey_form");
+            survey_form.attr('action','http://13.209.221.206/openuniv/Survey.php');
+            survey_form.attr('method','post');
+            survey_form.attr('target','iframe');
+            survey_form.submit();
+            $("#div_survey").fadeOut(200);
+            $("#div_opinion").delay(200).fadeIn(200);
+            // console.log(survey_result);
+            // $.ajax({
+            //     type: 'post',
+            //     url: 'http://13.209.221.206/openuniv/Survey.php',
+            //     data: survey_result,
+            //     error: function (xhr, status, error) {
+            //         alert(error);
+            //     },
+            //     success: function () {
+            //         $("#div_survey").fadeOut(200);
+            //         $("#div_opinion").delay(200).fadeIn(200);
+            //     }
+            // });
+        }
+    })
     $("#opinion_submit").on("click", () => {
         if ($("#opinion_submit").hasClass("enabled")) {
-            let opinion_result = $("#opinion_form").serialize();
-            $.ajax({
-                type: 'post',
-                url: 'http://13.209.221.206/openuniv/Opinion.php',
-                data: opinion_result,
-            });
+            let opinion_form = $("#opinion_form");
+            opinion_form.attr('action','http://13.209.221.206/openuniv/Opinion.php');
+            opinion_form.attr('method','post');
+            opinion_form.attr('target','iframe');
+            opinion_form.submit();
             alert("답변 감사합니다");
             closeNotice();
+            // let opinion_result = $("#opinion_form").serialize();
+            // $.ajax({
+            //     type: 'post',
+            //     url: 'http://13.209.221.206/openuniv/Opinion.php',
+            //     data: opinion_result,
+            //     error: function (xhr, status, error) {
+            //         alert(error);
+            //     },
+            //     success: function () {
+            //         alert("답변 감사합니다");
+            //         closeNotice();
+            //     }
+            // });
         }
     })
 });
