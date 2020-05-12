@@ -480,7 +480,7 @@ $(document).ready(function () {
     $("#survey_submit").on("click", () => {
         if ($("#survey_submit").hasClass("enabled")) {
             let survey_form = $("#survey_form");
-            survey_form.attr('action','http://13.209.221.206/openuniv/Survey.php');
+            survey_form.attr('action','http://13.209.221.206:80/openuniv/Survey.php');
             survey_form.attr('method','post');
             survey_form.attr('target','iframe');
             survey_form.submit();
@@ -504,7 +504,7 @@ $(document).ready(function () {
     $("#opinion_submit").on("click", () => {
         if ($("#opinion_submit").hasClass("enabled")) {
             let opinion_form = $("#opinion_form");
-            opinion_form.attr('action','http://13.209.221.206/openuniv/Opinion.php');
+            opinion_form.attr('action','http://13.209.221.206:80/openuniv/Opinion.php');
             opinion_form.attr('method','post');
             opinion_form.attr('target','iframe');
             opinion_form.submit();
