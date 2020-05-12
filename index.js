@@ -431,7 +431,6 @@ $(document).ready(function () {
             let survey_result = $("#survey_form").serialize();
             console.log(survey_result);
             $.ajax({
-                crossOrigin : true , 
                 type: 'post',
                 url: 'http://13.209.221.206/openuniv/Survey.php',
                 data: survey_result,
@@ -490,7 +489,6 @@ $(document).ready(function () {
         if ($("#opinion_submit").hasClass("enabled")) {
             let opinion_result = $("#opinion_form").serialize();
             $.ajax({
-                crossOrigin : true , 
                 type: 'post',
                 url: 'http://13.209.221.206/openuniv/Opinion.php',
                 data: opinion_result,
