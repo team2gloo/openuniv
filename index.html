@@ -29,7 +29,7 @@
     <link rel="preload" href="fonts/BMHANNAPro.woff" as="font" type="font/woff" crossorigin="anonymous">
     <link rel="preload" href="fonts/BMHANNAAir.woff" as="font" type="font/woff" crossorigin="anonymous">
     <!--css-->
-    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="main.css?v=0505" />
+    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="main.css?v=0512" />
     <link rel="stylesheet" type="text/css" id="applicationStylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <!--script-->
@@ -88,30 +88,42 @@
                         <!-- <img src="asset/magnifying.svg" id="search_magnifying"> -->
                     </div>
                 </div>
-                <div id="div_main_graph">
-                    <div id="main_graph">
+                <div class="div_main_category_btn">
+                    <div class="main_category_btn active" id="main_btn_all">전체개강</div>
+                    <div class="main_category_btn" id="main_btn_partial">부분개강</div>
+                </div>
+                <div>
+                <div class="div_main_graph">
+                    <div class="main_graph">
                         <div style="z-index: 2; position: relative;  width: 100%;
-                        height: 100%;">
-                            <canvas width="100%" height="100%" id="main_graph_canvas">
+                        height: 100%;" class="main_category_all">
+                            <canvas width="100%" height="100%" id="main_graph_canvas_all" >
 
                             </canvas>
                         </div>
-                        <div id="div_main_graph_center" style="z-index: 1;">
-                            <div id="main_graph_univ_count">
+                        <div style="z-index: 2; position: relative;  width: 100%;
+                        height: 100%;" class="main_category_partial">
+                            
+                            <canvas width="100%" height="100%" id="main_graph_canvas_partial" >
+
+                            </canvas>
+                        </div>
+                        <div class="div_main_graph_center" style="z-index: 1;">
+                            <div class="main_graph_univ_count">
                                 <span>전국 <span id="main_univ_count"></span>개 대학</span>
                             </div>
 
-                            <div id="main_graph_updated_date">
+                            <div class="main_graph_updated_date">
                                 <span>update : <span id="main_update_date"></span></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="div_main_total_table">
-                    <div id="main_total_table">
-
-                    </div>
+                <div class="div_main_total_table">
+                    <div class="main_total_table main_category_all" id="main_total_table_all" ></div>
+                    <div class="main_total_table main_category_partial" id="main_total_table_partial"></div>
                 </div>
+            </div>
                 <div id="main_2gloo_instagram">
                     <span id="_2gloo_instagram">개발팀의 이야기가 궁금하다면?!<img src="assets/instagram-logo.png" /> </span>
                 </div>
@@ -138,7 +150,7 @@
                     style="position: relative; right: 5px; font-size:9px;color: rgba(180, 180, 180, 0.7); text-align: right;">
                     ※ 이 사이트에는 우아한형제들에서 제공한 배달의민족 [한나체 Air, 한나체 Pro]가 적용되어 있습니다.
                 </div>
-
+                 
             </div>
 
         </div>
@@ -184,10 +196,18 @@
 
                 <div id="univ_main_2">
                     <div id="univ_main_2_div">
-                        <div id="univ_main_2_1">
+                        <div class="div_univ_category_btn">
+                                <div class="univ_category_btn active" id="univ_btn_all">전체개강</div>
+                                <div class="univ_category_btn" id="univ_btn_partial">부분개강</div>
+                            </div>
+                        <div class="univ_main_2_1">
                             <div style="z-index: 2; position: relative;  width: 100%;
-                        height: 100%;">
+                        height: 100%;" class="univ_category_all">
                                 <canvas width="100%" height="100%" id="univ_main_2_1_graph"></canvas>
+                            </div>
+                            <div style="z-index: 2; position: relative;  width: 100%;
+                        height: 100%;" class="univ_category_partial">
+                                <canvas width="100%" height="100%" id="univ_main_2_1_graph_partial"></canvas>
                             </div>
                             <div id="univ_main_2_1_1" style="z-index: 1;">
                                 <div>
@@ -202,12 +222,19 @@
                         </div>
                         <div id="univ_main_2_2" class="univ_scroll">
 
-                            <div style="width: max-content; margin:auto;">
-                                <div id="univ_main_2_2_date">
+                            <div style="width: max-content; margin:auto;" class="univ_category_all">
+                                <div class="univ_main_2_2_date" id="univ_main_2_2_date_all">
                                 </div>
-                                <div id="univ_main_2_2_count">
+                                <div class="univ_main_2_2_count" id="univ_main_2_2_count_all">
                                 </div>
                             </div>
+                            <div style="width: max-content; margin:auto;" class="univ_category_partial">
+                                <div class="univ_main_2_2_date" id="univ_main_2_2_date_partial">
+                                </div>
+                                <div class="univ_main_2_2_count" id="univ_main_2_2_count_partial">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -238,29 +265,69 @@
     </div>
     <div id="div_notice_blur">
         <div class="div_notice">
-            <div class="notice">
-                <svg id="close_icon" xmlns="http://www.w3.org/2000/svg" width="0.25rem" height="0.25rem" viewBox="0 0 104.652 104.945">
+            <div class="notice" id="div_survey">
+                <div class="notice_title" style="color:#084A61;">질문이 있습니다!</div>
+                <div class="survey_content">
+                    <div class="div_survey_qMark">
+                        <div class="survey_qMark">Q</div>
+                    </div>
+                    <div class="notice_content survey">
+                        저희 <b>'2gloo'</b>는 <b>'각 대학교들의 모임과 동아리를 알려주고, 서로 소통할 수 있는 앱'</b>을 개발하고 있습니다. 앱이 출시되면 사용할 의향이
+                        있습니까?<br />
+                    </div>
+                    <div id="survey_introApp">앱 설명 보기</div>
+
+                </div>
+                <div class="div_survey_form">
+                    <form id="survey_form">
+                        <label class="survey_container">사용한다
+                            <input type="radio" name="survey_result" value="1" name="radio">
+                            <span class="survey_checkmark"></span>
+                        </label><br />
+                        <label class="survey_container">잘 모르겠다
+                            <input type="radio" name="survey_result" value="2" name="radio">
+                            <span class="survey_checkmark"></span>
+                        </label><br />
+                        <label class="survey_container">사용하지 않는다
+                            <input type="radio" name="survey_result" value="3" name="radio">
+                            <span class="survey_checkmark"></span>
+                        </label><br />
+                    </form>
+                </div>
+                <div class="submit_btn" id="survey_submit" ><b>제출하기</b></div>
+            </div>
+            <div class="notice" id="div_opinion">
+                <svg id="close_icon" xmlns="http://www.w3.org/2000/svg" width="0.25rem" height="0.25rem"
+                    viewBox="0 0 104.652 104.945">
                     <g transform="translate(-1401.707 -38.706)">
                         <rect width="18" height="130" rx="9" transform="translate(1493.631 39) rotate(45)" />
                         <rect width="18" height="130" rx="9" transform="translate(1506.359 130.63) rotate(135)" />
                     </g>
                 </svg>
-                <div class="notice_title">공지사항</div>
+                <div class="notice_title" style="color:#0083B0;">답변 감사합니다</div>
 
-                <div class="notice_content" >
-                    최근 전공 또는 강의 별로 대면 강의 시작일이 <br />
-                    다른 대학교들의 수가 증가하고 있습니다.<br />
+                <div class="notice_content opinion">
+                    대학생으로 이루어진 창업팀 <b>'2gloo'</b>는 <b>대학생들의 어려운 점들을 해결하고, 대학생활을 좀 더 즐겁고 알차게 보낼 수 있는 아이템 개발</b>을 목표로 하고
+                    있습니다. <br />
+                    <b>'대학교 모임, 동아리 앱'</b>에 대한 의견이나 "이런 서비스가 있으면 좋겠다"고 생각하시는 것들을 편하게 작성해 주세요.
+                    <span class="not_required">  필수는 아닙니다 :)</span>
                     <br />
-                    저희 '대학교 개강 알리미'는 모든 강의가<br />
-                    "대면 강의"로 전환되는 시점을 기준으로<br />
-                    개강일 업데이트를 진행하고 있으니 <br />
-                    이 점 양해 부탁드립니다 :)
+                    <p class="blank"><br />감사합니다.</p>
                 </div>
+
+                    <form id="opinion_form">
+                        <textarea class="opinion_textarea" name="opinion" ></textarea>
+                    </form>
+                <div class="submit_btn" id="opinion_submit">
+                    <b>제출하기</b></div>
+                    <div class="div_notice_2gloo">
+                        <span id="notice_2gloo_instagram">개발팀의 이야기가 궁금하다면?!<img src="assets/instagram-logo.png" /> </span>
+                    </div>
             </div>
         </div>
 
     </div>
-    <script type="text/javascript" lang="javascript" src="index.js?v=0511"></script>
+    <script type="text/javascript" lang="javascript" src="index.js?v=0512"></script>
 </body>
 
 </html>

@@ -52,12 +52,12 @@
         display: inline-block;
     }
     #div_main_title {
-        height: 14vmin;
+        height: 13vmin;
         text-align: center;
     }
     #main_title {
         position: relative;
-        top: 4vmin;
+        top: 3vmin;
         font-family: yg-jalnan;
         font-style: normal;
         font-weight: normal;
@@ -66,7 +66,7 @@
     }
     #div_main_search {
         text-align: center;
-        height: 10.5vmin;
+        height: 9.5vmin;
     
     }
     #main_search {
@@ -77,7 +77,7 @@
         margin-left: auto;
         margin-right: auto;
         position: relative;
-        top: 3.7vmin;
+        top: 2.7vmin;
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -158,34 +158,64 @@
         height: 4.5vmin;
         fill: #00B4DB;
     }
-    #div_main_graph {
-        display: inline-block;
-        height: 59vmin;
+/***********************************/
+    .div_main_category_btn {
+        width:34vmin;
+        height:5vmin;
+        margin:auto; 
+        margin-top:2vmin; 
     }
-    #div_main_graph #main_graph {
+
+    .main_category_btn{
+        width:17vmin; 
+        height: 5vmin; 
+        background-color: #33CAEF; 
+        float: left;
+        color:#FFFFFF;
+        font-family: BMHANNAPro;
+        font-size:2.2vmin;
+        line-height: 5vmin;
+        text-align: center;
+    }
+
+    #main_btn_all{
+        border-top-left-radius: 2vmin; 
+        border-bottom-left-radius: 2vmin; 
+    }
+
+    #main_btn_partial{
+        border-top-right-radius: 2vmin;
+        border-bottom-right-radius: 2vmin; 
+    }
+   /***********************************/
+    .div_main_graph {
+        display: inline-block;
+        height: 58vmin;
+    }
+    .div_main_graph .main_graph {
         width: 55vmin;
         height: 55vmin;
         position: relative;
         font-size:0.2rem;
-        top: 3.7vmin;
+        top: 2.7vmin;
         margin: auto;
     }
-    #main_graph_univ_count{
+    .main_graph_univ_count{
         position: relative;
         bottom:1vmin;    
         font-size: 5vmin;    
     }
-    #main_graph_updated_date {
+    .main_graph_updated_date {
         position: relative;
         top: 2vmin;   
         font-size: 2vmin;
         color: rgba(154, 210, 222, 1);
     }
-    #div_main_total_table {
+    .div_main_total_table {
         width: 100%;
-        height: 13.67vmin;
+        height: 10vmin;
     }
-    #main_total_table {
+    .main_total_table {
         margin: auto;
         top: 2vmin;
         position: relative;
@@ -431,12 +461,42 @@
         display: flex; 
         flex-direction: column; 
     }
-    #univ_main_2_1{
+    .univ_main_2_1{
         position: relative; 
         width: 85%;
         height: auto; 
         margin: auto;
     }
+/************************************/
+    .div_univ_category_btn {
+        width:2.6rem;
+        height:0.4rem;
+        margin:auto; 
+        margin-bottom:0.43rem;
+    }
+
+    .univ_category_btn{
+        width:1.3rem; 
+        height: 0.43rem; 
+        background-color: #33CAEF; 
+        float: left;
+        color:#FFFFFF;
+        font-family: BMHANNAPro;
+        font-size:0.2rem;
+        line-height: 0.43rem;
+        text-align: center;
+    }
+
+    #univ_btn_all{
+        border-top-left-radius: 0.15rem; 
+        border-bottom-left-radius: 0.15rem; 
+    }
+
+    #univ_btn_partial{
+        border-top-right-radius: 0.15rem;
+        border-bottom-right-radius: 0.15rem;
+    }
+/************************************/
     #univ_main_2_1_1{
         position: absolute; 
         height: 100%; 
@@ -464,7 +524,7 @@
     #univ_main_2_2{
         width: 100%;
         flex:1; 
-        margin-top: 10%; 
+        margin-top: 5%; 
         font-size: 0.2rem; 
         font-family: 'yg-jalnan'; 
         font-style: normal;
@@ -474,7 +534,7 @@
     }
     
     
-    #univ_main_2_2_count{
+    .univ_main_2_2_count{
         width: max-content; 
         margin-left:0.25rem; 
         float: right;  
@@ -531,20 +591,20 @@
         text-align: center; 
     }
     .div_notice{
-        width: 4.7rem; 
-        height: 4rem;
+        width: 8rem; 
+        height: 6.5rem;
         margin:auto; 
         background-color: #FCFCFC;
         box-shadow: 0px 0.03rem 0.06rem #00000029;
-        border-radius: 0.1rem; 
+        border-radius: 0.3rem; 
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
         align-content: center;
     }
     .notice{
-        width: max-content; 
-        height: max-content; 
+        width: 7.3rem; 
+        height: 5.5rem; 
         margin:auto; 
         position:relative;
     }
@@ -557,19 +617,192 @@
     }
     .notice_title{
         color: #545454;
-        font-size: 0.35rem; 
+        font-size: 0.4rem; 
         font-family: 'BMHANNAPro'; 
         width: max-content; 
         margin:auto; 
         margin-bottom: 0.4rem; 
     }
+    .survey_content{
+        width: 7.3rem; 
+        height:1rem;
+    }
+    .survey_content:after{
+        clear: both;
+    }
+    .div_survey_qMark{
+        width:0.7rem; 
+        height:0.7rem; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        float:left;
+    }
+    .survey_qMark{
+        font-size:0.3rem; 
+        width:0.5rem; 
+        height:0.5rem; 
+        text-align: center; 
+        background-color: #8C89FF; 
+        color: #FFFFFF; 
+        border-radius: 0.25rem; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        line-height: 0; 
+        float:left;
+    }    
     .notice_content{
+        white-space: normal;
         font-size: 0.2rem; 
         line-height: 0.35rem;  
         color: #545454; 
-        margin:auto; 
-        width:max-content;
     }
+    .notice_content.survey{
+        width: 6.6rem;
+        float:left;
+     
+    }
+    .notice_content.opinion{
+        width: 7.3rem;
+    }
+    
+    #survey_introApp{
+        float:right; 
+        font-size:0.18rem; 
+        color:#707070; 
+        line-height: 0.4rem;
+    }
+   
+    .div_survey_form{
+        width:max-content; 
+        height:max-content; 
+        font-size:0.2rem; 
+        margin-left:0.7rem; 
+        margin-top:0.5rem;
+    }
+    .submit_btn{
+        width:1.5rem;
+        height:0.5rem; 
+        background-color: #EEEEEE; 
+        font-size:0.2rem; 
+        color:#BBB7B7; 
+        margin:auto; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        text-align: center; 
+        border-radius: 0.15rem; 
+    }
+    
+    
+    #survey_submit{       
+        margin-top:0.8rem;
+    }
+    #opinion_submit{
+        margin-top:0.2rem;
+    }
+    
+    
+    .blank{
+        line-height: 0.2rem;
+    }
+    
+    .survey_container {
+        display: block;
+        position: relative;
+        padding-left: 0.35rem;
+        cursor: pointer;
+        font-size: 0.2rem;
+        line-height: 0.3rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Hide the browser's default radio button */
+      .survey_container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      /* Create a custom radio button */
+      .survey_checkmark {
+        position: absolute;
+        top: 0.05rem;
+        left: 0;
+        height: 0.2rem;
+        width: 0.2rem;
+        background-color: white;
+        border: 0.01rem solid #0083B0;
+        border-radius: 50%;
+      }
+      
+      /* On mouse-over, add a grey background color */
+      .survey_container:hover input ~ .survey_checkmark {
+        background-color: #00B4DB;
+      }
+      
+      /* When the radio button is checked, add a blue background */
+      .survey_container input:checked ~ .survey_checkmark {
+        background-color: #00B4DB;
+      }
+      
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .survey_checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the indicator (dot/circle) when checked */
+      .survey_container input:checked ~ .survey_checkmark:after {
+        display: block;
+      }
+      
+      /* Style the indicator (dot/circle) */
+      .survey_container .survey_checkmark:after {
+          top: 0.05rem;
+          left: 0.05rem;
+          width: 0.1rem;
+          height: 0.1rem;
+          border-radius: 50%;
+          background: white;
+      }
+      .opinion_textarea{
+        width:7.3rem; 
+        height:1.5rem; 
+        font-size:0.2rem; 
+        resize:none;
+        margin-top:0.3rem; 
+        border-color: #BEBEBE;
+      }
+      .div_notice_2gloo{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: flex-end; 
+        text-align: center;
+        font-family: 'BMHANNAPro';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 0.17rem;
+        color: rgba(171, 171, 171, 1);
+        margin-top:0.3rem;
+      }
+      
+      #notice_2gloo_instagram img {
+        width: 0.17rem;
+        height: 0.17rem;
+        margin-left:0.05rem;
+        min-width: 10px;
+        min-height: 10px;
+      }
+      .not_required{
+        font-size:0.13rem; 
+        color:#999999;
+      }
 }
 /* mobile */
 @media all and ( max-width: 99.9vh) {
@@ -697,41 +930,69 @@
         fill: #00B4DB;
     }
     
+    .div_main_category_btn {
+        width:2rem;
+        height:0.3rem;
+        margin:auto; 
+        margin-top:0.29rem; 
+    }
+
+    .main_category_btn{
+        width:1rem; 
+        height: 0.3rem;
+        background-color: #33CAEF; 
+        float: left;
+        color:#FFFFFF;
+        font-family: BMHANNAPro;
+        font-size:0.16rem;
+        line-height: 0.3rem;
+        text-align: center;
+    }
+
+    #main_btn_all{
+        border-top-left-radius: 0.12rem; 
+        border-bottom-left-radius: 0.12rem; 
+    }
+
+    #main_btn_partial{
+        border-top-right-radius: 0.12rem;
+        border-bottom-right-radius: 0.12rem; 
+    }
+   
     
     
-    
-    #div_main_graph {        
-        height: 3.46rem;
+    .div_main_graph {        
+        height: 3.4rem;
     }
     
-    #div_main_graph #main_graph {
+    .div_main_graph .main_graph {
         width: 3.13rem;
         position: relative;
-        top: 0.31rem;
+        top: 0.3rem;
         font-size:0.2rem;
         margin: auto;
     }
     
-    #main_graph_univ_count{
+    .main_graph_univ_count{
         position: relative;
         bottom:0.05rem;
         font-size: 0.27rem;
         
     }
-    #main_graph_updated_date {
+    .main_graph_updated_date {
         position: relative;
         top: 0.16rem;
         font-size: 0.1rem;    
     }
     
-    #div_main_total_table {
+    .div_main_total_table {
         width: 100%;
-        height: 1.25rem;
+        height: 1rem;
     }
     
-    #main_total_table {
+    .main_total_table {
         margin: auto;
-        top: 0.35rem;
+        top: 0.3rem;
         position: relative;
         width: max-content;
     }
@@ -971,7 +1232,36 @@
         display: flex; 
         flex-direction: column; 
     }
-    #univ_main_2_1{
+
+    .div_univ_category_btn {
+        width:1.8rem;
+        height:0.34rem;
+        margin:auto; 
+        margin-bottom:0.43rem;
+    }
+
+    .univ_category_btn{
+        width:0.9rem; 
+        height: 0.34rem; 
+        background-color: #33CAEF; 
+        float: left;
+        color:#FFFFFF;
+        font-family: BMHANNAPro;
+        font-size:0.16rem;
+        line-height: 0.34rem;
+        text-align: center;
+    }
+
+    #univ_btn_all{
+        border-top-left-radius: 0.12rem; 
+        border-bottom-left-radius: 0.12rem; 
+    }
+
+    #univ_btn_partial{
+        border-top-right-radius: 0.12rem;
+        border-bottom-right-radius: 0.12rem;
+    }
+    .univ_main_2_1{
         position: relative;
         width: 2.85rem;
         height: auto; 
@@ -1005,7 +1295,7 @@
     #univ_main_2_2{
         width: 100%;
         flex:1; 
-        margin-top: 0.6rem; 
+        margin-top: 0.4rem; 
         font-size: 0.15rem; 
         font-family: 'yg-jalnan'; 
         font-style: normal;
@@ -1014,7 +1304,7 @@
         overflow-y: scroll;
     }
     
-    #univ_main_2_2_count{
+    .univ_main_2_2_count{
         width: max-content; 
         margin-left:0.2rem; 
         float: right;  
@@ -1081,20 +1371,20 @@
         text-align: center; 
     }
     .div_notice{
-        width: 2.9rem; 
-        height: 2.6rem;
+        width: 3.2rem; 
+        height: 4rem;
         margin:auto; 
         background-color: #FCFCFC;
         box-shadow: 0px 0.03rem 0.06rem #00000029;
-        border-radius: 0.1rem; 
+        border-radius: 0.15rem; 
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
         align-content: center;
     }
     .notice{
-        width: max-content; 
-        height: max-content; 
+        width: 2.9rem; 
+        height: 3.6rem; 
         margin:auto; 
         position:relative;
     }
@@ -1113,13 +1403,177 @@
         margin:auto; 
         margin-bottom: 0.25rem; 
     }
-    .notice_content{
-        font-size: 0.13rem; 
-        line-height: 0.2rem;  
-        color: #545454; 
-        margin:auto; 
-        width:max-content;
+    .survey_content{
+        width: 2.9rem; 
+        height:0.9rem;
     }
+    .survey_content:after{
+        clear: both;
+    }
+    .div_survey_qMark{
+        width:0.4rem; 
+        height:0.45rem; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        float:left;
+    }
+    .survey_qMark{
+        font-size:0.18rem; 
+        width:0.3rem; 
+        height:0.3rem; 
+        text-align: center; 
+        background-color: #8C89FF; 
+        color: #FFFFFF; 
+        border-radius: 0.15rem; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        line-height: 0; 
+        float:left;
+    }    
+    .notice_content{
+        font-size: 0.11rem; 
+        line-height: 0.15rem;  
+        color: #545454; 
+        white-space: normal;
+    }
+    .notice_content.survey{
+        width: 2.5rem;
+        float:left;
+    }
+    #survey_introApp{
+        float:right; 
+        font-size:0.1rem; 
+        color:#707070; 
+        line-height: 0.2rem;
+    }
+    .div_survey_form{
+        width:max-content; 
+        height:max-content; 
+        font-size:0.11rem; 
+        margin-left:0.37rem; 
+    }
+    .submit_btn{
+        width:1rem;
+        height:0.35rem; 
+        background-color: #EEEEEE; 
+        font-size:0.13rem; 
+        color:#BBB7B7; 
+        margin:auto; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        text-align: center; 
+        border-radius: 0.06rem; 
+    }
+    #survey_submit{       
+        margin-top:0.15rem;
+    }
+
+    .survey_container {
+        display: block;
+        position: relative;
+        padding-left: 0.35rem;
+        cursor: pointer;
+        font-size: 0.13rem;
+        line-height: 0.35rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Hide the browser's default radio button */
+      .survey_container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      /* Create a custom radio button */
+      .survey_checkmark {
+        position: absolute;
+        top: 0.095rem;
+        left: 0;
+        height: 0.16rem;
+        width: 0.16rem;
+        background-color: white;
+        border: 0.01rem solid #0083B0;
+        border-radius: 50%;
+      }
+      
+      /* On mouse-over, add a grey background color */
+      .survey_container:hover input ~ .survey_checkmark {
+        background-color: #00B4DB;
+      }
+      
+      /* When the radio button is checked, add a blue background */
+      .survey_container input:checked ~ .survey_checkmark {
+        background-color: #00B4DB;
+      }
+      
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .survey_checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the indicator (dot/circle) when checked */
+      .survey_container input:checked ~ .survey_checkmark:after {
+        display: block;
+      }
+      
+      /* Style the indicator (dot/circle) */
+      .survey_container .survey_checkmark:after {
+          top: 0.03rem;
+          left: 0.03rem;
+          width: 0.1rem;
+          height: 0.1rem;
+          border-radius: 50%;
+          background: white;
+      }
+    .blank{
+        line-height: 0.12rem;
+    }
+    #opinion_submit{
+        margin-top:0.15rem;
+    }
+    .notice_content.opinion{
+        width: 2.9rem;
+    }
+    .opinion_textarea{
+        width:2.9rem; 
+        height:1.15rem; 
+        font-size:0.12rem; 
+        resize:none;
+        margin-top:0.17rem; 
+        border-color: #BEBEBE;
+      }
+      .div_notice_2gloo{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: flex-end; 
+        text-align: center;
+        font-family: 'BMHANNAPro';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 0.1rem;
+        color: rgba(171, 171, 171, 1);
+        margin-top:0.2rem;
+      }
+      #notice_2gloo_instagram img {
+        width: 0.1rem;
+        height: 0.1rem;
+        margin-left:0.05rem;
+        min-width: 10px;
+        min-height: 10px;
+      }
+      .not_required{
+        font-size:0.08rem; 
+        color:#999999;
+      }
 }
 
 
@@ -1169,7 +1623,7 @@ body {
     fill: #0083B0;
 }
 
-#div_main_graph_center {
+.div_main_graph_center {
     position: absolute;
     text-align: center;
     display: flex;
@@ -1215,6 +1669,26 @@ body {
     background-color: red;
 } */
 
+.submit_btn.enabled{
+    background-color: #F5A623; 
+    color:#FFFFFF; 
+}
+.submit_btn.enabled:hover{
+    cursor: pointer;
+    background-color: #F19B0C;
+    color:#5C6162;
+}
+#survey_introApp:hover{
+    cursor: pointer;
+    color:#000000;
+}
+#notice_2gloo_instagram{
+    display: flex;
+}
+#notice_2gloo_instagram:hover{
+    cursor: pointer;
+    color:#000000;
+}
 
 
 #arrow_icon:hover{
@@ -1230,7 +1704,7 @@ body {
     cursor: pointer;
     color: #000000;
 }
-#univ_main_2_2_date{
+.univ_main_2_2_date{
     width: max-content; 
     float:left; 
     display: flex;
@@ -1272,6 +1746,7 @@ body {
     border: 2px solid transparent;
 }
 
+
 #div_notice_blur{
     position: fixed;
     width: 100%; 
@@ -1286,7 +1761,43 @@ body {
     align-content: center;
 }
 
+#div_opinion{
+    display: none;
+}
 #close_icon:hover{
     cursor: pointer;
     fill:#000000;
+}
+.main_category_partial{
+    display: none;
+}
+.main_category_btn:hover{
+    cursor: pointer;
+    background-color: #00B4DB;
+    color:#688197;
+}
+.main_category_btn.active{
+    background-color: #0083B0; 
+}
+.main_category_btn.active:hover{
+    cursor: default;
+    background-color: #0083B0; 
+    color:#FFFFFF;
+}
+
+.univ_category_partial{
+    display: none;
+}
+.univ_category_btn:hover{
+    cursor: pointer;
+    background-color: #00B4DB;
+    color:#688197;
+}
+.univ_category_btn.active{
+    background-color: #0083B0; 
+}
+.univ_category_btn.active:hover{
+    cursor: default;
+    background-color: #0083B0; 
+    color:#FFFFFF;
 }
