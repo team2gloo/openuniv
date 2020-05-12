@@ -7,7 +7,7 @@ let total_data;
 let chart2 = null;
 let chart2_partial = null;
 let color_arr_all = ['#CF5948', '#F5A623', '#A5CF29', '#8C89FF', '#688197', '#33CAEF'];
-let color_arr_partial = ['#CF5948', ' #6AAFE6', '#FFBC42'];
+let color_arr_partial = ['#CF5948', '#00B9F1', '#58C9B9'];
 function getCookie(name) {
     let cookie = document.cookie;
     if (document.cookie != "") {
@@ -22,9 +22,9 @@ function getCookie(name) {
     return;
 }
 function openNotice() {
-    // let cookieCheck = getCookie("openSurvey");
-    // if (cookieCheck != "N") $('#div_notice_blur').css('display','flex');
-    // $('#div_notice_blur').css('display', 'flex');
+    let cookieCheck = getCookie("openSurvey");
+    if (cookieCheck != "N") $('#div_notice_blur').css('display','flex');
+    $('#div_notice_blur').css('display', 'flex');
 }
 function setCookie(name, value, expiredays) {
     let date = new Date();
@@ -432,6 +432,7 @@ $(document).ready(function () {
             let survey_result = $("#survey_form").serialize();
             console.log(survey_result);
             $.ajax({
+                crossOrigin : true , 
                 type: 'post',
                 url: 'http://13.209.221.206/openuniv/Survey.php',
                 data: survey_result,
@@ -490,6 +491,7 @@ $(document).ready(function () {
         if ($("#opinion_submit").hasClass("enabled")) {
             let opinion_result = $("#opinion_form").serialize();
             $.ajax({
+                crossOrigin : true , 
                 type: 'post',
                 url: 'http://13.209.221.206/openuniv/Opinion.php',
                 data: opinion_result,
